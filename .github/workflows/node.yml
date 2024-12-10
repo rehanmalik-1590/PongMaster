@@ -1,0 +1,43 @@
+name: PongMaster CI
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger on pull requests to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+
+    steps:
+      # Step 1: Check out the code from the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # You can specify the Node.js version you need
+
+      # Step 3: Install dependencies (will ignore node_modules due to .gitignore)
+      - name: Install dependencies
+        run: |
+          npm install
+
+      # Step 4: Run tests (if you have any test scripts, modify this if needed)
+      - name: Run tests
+        run: |
+          npm test  # This can be modified to suit your test script, if any
+
+      # Step 5: Commit and push changes (if any changes are made)
+      - name: Push changes
+        run: |
+          git add .
+          git commit -m "Automated commit"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token to authenticate

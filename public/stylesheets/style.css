@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  background-color: rgb(39, 39, 39);
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center vertically */
+  font-family: "Courier New", Courier, monospace;
+  height: 100vh; /* Full viewport height */
+}
+
+a {
+  color: #00B7FF;
+}
+
+#canvas {
+  margin-top: 20px;
+  z-index: 10;
+  width: 80%; /* Default proportional width */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 1920px; /* Match max resolution */
+  max-height: 70%; /* Prevent canvas from exceeding viewport height */
+}
+
+/* Monitor and Larger (Landscape) */
+@media screen and (min-width: 1920px) {
+  #canvas {
+    margin-top: 50px;
+    width: 70%; /* Scale width proportionally for large screens */
+    max-width: 1600px; /* Restrict max width to prevent over-expansion */
+    max-height: 80%; /* Allow slightly more height */
+  }
+}
+
+/* Tablets and Smaller Desktops */
+@media screen and (max-width: 1024px) {
+  #canvas {
+    width: 90%; /* Adjust width for smaller screens */
+    height: auto; /* Maintain aspect ratio */
+    margin-top: 30px;
+    max-width: 900px; /* Restrict max width */
+  }
+}
+
+/* Large Smartphones (Portrait) */
+@media screen and (max-width: 768px) {
+  #canvas {
+    width: 100%; /* Full width */
+    height: 60%; /* Adjust height proportionally */
+    margin-top: 20px;
+    max-width: 600px; /* Restrict width for smaller screens */
+  }
+}
+
+/* Small Smartphones (Vertical) */
+@media screen and (max-width: 500px) {
+  #canvas {
+    width: 100%; /* Full width */
+    height: 50%; /* Adjust height proportionally */
+    margin-top: 10px;
+    max-width: 400px; /* Restrict max width */
+  }
+}
